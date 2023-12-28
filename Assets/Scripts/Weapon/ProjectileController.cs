@@ -17,13 +17,14 @@ public class ProjectileController : MonoBehaviour
     private void Start()
     {
         _rigidbody.AddForce(_shootingPoint.forward * _shootingForce, ForceMode.Impulse);
-        transform.LookAt(_shootingPoint.forward);
     }
 
     private void Update()
     {
-        //_rigidbody.velocity = _shootingPoint.forward * _shootingForce;
-        transform.LookAt(_shootingPoint.forward);
+        if (_rigidbody.velocity != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
+        }
     }
 
     public void InitProjectileData(float shootingForce, Transform shootingPoint)

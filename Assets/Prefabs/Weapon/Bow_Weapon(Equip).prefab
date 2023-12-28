@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 1
-  shootingForce: 50
-  shootingObject: {fileID: 6958001291013925291, guid: 4fdf5e050d7c0b74888f5db31de802a0, type: 3}
+  shootingForce: 10
+  shootingObject: {fileID: 6958001291013925291, guid: 8919e1bb82845864d9e70bd4e25c34ac, type: 3}
 --- !u!1001 &3293102389224741610
 PrefabInstance:
   m_ObjectHideFlags: 0
