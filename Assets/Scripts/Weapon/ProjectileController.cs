@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
@@ -7,7 +5,8 @@ public class ProjectileController : MonoBehaviour
     private Rigidbody _rigidbody;
     private BoxCollider _collider;
 
-    private float _flyingForce;
+    private float _shootingForce;
+    private Transform _shootingPoint;
 
     private void Awake()
     {
@@ -15,13 +14,21 @@ public class ProjectileController : MonoBehaviour
         _collider = GetComponent<BoxCollider>();
     }
 
-    private void Update()
+    private void Start()
     {
-        _rigidbody.velocity = transform.forward * _flyingForce;
+        _rigidbody.AddForce(_shootingPoint.forward * _shootingForce, ForceMode.Impulse);
+        transform.LookAt(_shootingPoint.forward);
     }
 
-    public void InitProjectileData(float shootingForce)
+    private void Update()
     {
-        _flyingForce = shootingForce;
+        //_rigidbody.velocity = _shootingPoint.forward * _shootingForce;
+        transform.LookAt(_shootingPoint.forward);
+    }
+
+    public void InitProjectileData(float shootingForce, Transform shootingPoint)
+    {
+        _shootingForce = shootingForce;
+        _shootingPoint = shootingPoint;
     }
 }

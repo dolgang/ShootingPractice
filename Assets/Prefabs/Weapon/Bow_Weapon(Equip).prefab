@@ -55,8 +55,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4883649542121578145}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.06162845, y: 0.70441604, z: -0.06162845, w: 0.70441604}
+  m_LocalPosition: {x: 0.42, y: -0.25, z: 0.7}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 1
-  shootingForce: 10
-  shootingObject: {fileID: 6958001291013925291, guid: 8919e1bb82845864d9e70bd4e25c34ac, type: 3}
+  shootingForce: 50
+  shootingObject: {fileID: 6958001291013925291, guid: 4fdf5e050d7c0b74888f5db31de802a0, type: 3}
 --- !u!1001 &3293102389224741610
 PrefabInstance:
   m_ObjectHideFlags: 0
