@@ -12,6 +12,11 @@ public class ProjectileWeapon : Weapon
     private float _attackCooldown;
     private Transform _shootingPosition;
 
+    private void Awake()
+    {
+        _shootingPosition = transform.Find("FirePoint");
+    }
+
     private void Update()
     {
         CooldownApply();
@@ -39,5 +44,6 @@ public class ProjectileWeapon : Weapon
     {
         GameObject shootedProjectile = Instantiate(shootingObject, _shootingPosition.position, Quaternion.identity);
         ProjectileController shootedController = shootedProjectile.GetComponent<ProjectileController>();
+        shootedController.InitProjectileData(shootingForce);
     }
 }
