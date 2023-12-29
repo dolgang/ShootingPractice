@@ -65,8 +65,11 @@ public class ProjectileWeapon : Weapon
 
     public override void OnAttackInput()
     {
-        GameObject shootedProjectile = Instantiate(shootingObject, _shootingPosition.position, _shootingPosition.rotation);
-        ProjectileController shootedController = shootedProjectile.GetComponent<ProjectileController>();
+        GameObject bullet = ProjectileManager.instance.GetBulletObject();
+        bullet.transform.position = _shootingPosition.position;
+        bullet.transform.rotation = _shootingPosition.rotation;
+        ProjectileController shootedController = bullet.GetComponent<ProjectileController>();
         shootedController.InitProjectileData(shootingForce, _shootingPosition);
+        shootedController.ShootingStart();
     }
 }
