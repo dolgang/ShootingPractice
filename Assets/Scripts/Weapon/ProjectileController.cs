@@ -8,7 +8,6 @@ public class ProjectileController : MonoBehaviour
     private float _shootingForce;
     private Transform _shootingPoint;
     private float _curDuration;
-    private LayerMask _layerMask;
 
     private bool isReady = false;
 
@@ -16,12 +15,6 @@ public class ProjectileController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<BoxCollider>();
-        _layerMask = LayerMask.NameToLayer("Environments");
-    }
-
-    private void Start()
-    {
-        
     }
 
     private void Update()
@@ -29,11 +22,17 @@ public class ProjectileController : MonoBehaviour
         if (!isReady)
             return;
 
-        if (isReady && !_rigidbody.isKinematic)
-            _curDuration += Time.deltaTime;
+        _curDuration += Time.deltaTime;
 
         if (_curDuration > 5 && !_rigidbody.isKinematic)
+        {
             DestroyBulletObject();
+        }
+        else if (_curDuration > 15 && _rigidbody.isKinematic)
+        {
+            DestroyBulletObject();
+        }
+            
 
         if (_rigidbody.velocity != Vector3.zero)
         {
@@ -54,20 +53,16 @@ public class ProjectileController : MonoBehaviour
         _rigidbody.AddForce(_shootingPoint.forward * _shootingForce, ForceMode.Impulse);
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (((1 << other.gameObject.layer) & _layerMask.value) != 0)
-        {
-            _rigidbody.isKinematic = true;
-        }
+        _rigidbody.isKinematic = true;
     }
-
 
     private void DestroyBulletObject()
     {
         isReady = false;
         _curDuration = 0;
+        _rigidbody.isKinematic = false;
         _rigidbody.velocity = Vector3.zero;
         ProjectileManager.instance.RemoveBulletObject(gameObject);
     }
